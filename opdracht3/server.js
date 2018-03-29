@@ -66,10 +66,10 @@ function scoreInput(req, res) {
 function scoreSubmit(req, res) {
   if (req.query.scored === "home") {
     score.home += 1;
-    pushNotif(`SCOOOORREEEE, The home team scored! It's ${score.home}-${score.away}`, `${process.env.HOST}`, `New Goal Home Team`);
+    pushNotif(`SCOOOORREEEE, The home team scored! It's ${score.home}-${score.away}`, `${process.env.HOST}`, `New Goal Home Team, ${score.home}-${score.away}`);
   } else if (req.query.scored === "away") {
     score.away += 1;
-    pushNotif(`SCOOOORREEEE, The away team scored! It's ${score.home}-${score.away}`, `${process.env.HOST}`, `New Goal Away Team`)
+    pushNotif(`SCOOOORREEEE, The away team scored! It's ${score.home}-${score.away}`, `${process.env.HOST}`, `New Goal Away Team, ${score.home}-${score.away}`)
   }
   res.render('submit.ejs', {score:score});
 }

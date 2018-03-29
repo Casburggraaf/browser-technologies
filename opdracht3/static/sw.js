@@ -19,7 +19,7 @@ self.addEventListener('push', function(event) {
           body: message,
           tag: 'push-demo',
           renotify: true
-          // icon: icon,
+          icon: icon
           // badge: icon,
           // sound: sound
       })
