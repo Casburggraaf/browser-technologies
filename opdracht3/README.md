@@ -23,11 +23,11 @@ Beoordelingscriteria
 
 ## Score Board
 
-Als eindopdracht van Browser Technologies hebben we een eindcase moeten kiezen. Een case die je door middel van Progressive Enhancement hebt opgebouwd. Ik heb gekozen voor een scoreboard waaraan extra functties aan worden toegevoegd.
+Als eindopdracht van Browser Technologies hebben we een eindcase moeten kiezen die door middel van Progressive Enhancement is opgebouwd. Ik heb gekozen voor een scoreboard waaraan extra functies worden toegevoegd.
 
 [LIVE DEMO](https://scoreboard.casburggraaf.com)
 
-Deze aplicatie is opgebouwd uit meerdere lagen, namelijk HTML, CSS en JS. Ook is gebruik gemaakt van future detection.
+Deze applicatie is opgebouwd uit meerdere lagen, namelijk HTML, CSS en JS. Ook is gebruik gemaakt van future detection.
 
 ### Laag 1 Pure HTML
 
@@ -36,17 +36,17 @@ Deze aplicatie is opgebouwd uit meerdere lagen, namelijk HTML, CSS en JS. Ook is
 | --------- | --------- | --------- | --------- | --------- | --------- |
 | IE8, IE9, IE10, IE11, Edge| last 10 versions| last 10 versions| last 10 versions| last 10 versions| last 10 versions
 
-De eerste 'laag' is geschreven in HTML en werkt in elke browser die ik heb getest. De HTML wordt gegenereerd doormiddel van express, en ejs templating. Het automatisch verversen van de pagina is gerealiseerd door de volgende tag:
+De eerste 'laag' is geschreven in HTML en werkt in elke browser die ik heb getest. De HTML wordt gegenereerd doormiddel van Express en EJS templating. Het automatisch verversen van de pagina is gerealiseerd door de volgende tag:
 
 ```html
 <noscript>
   <meta http-equiv="refresh" content="5">
 </noscript>
 ```
-Bovenstaande meta tag is ingesloten in <noscript> omdat deze anders nauwelijks aan te passen is wanneer betere notificaties mogelijk zijn.  
+Bovenstaande metatag is ingesloten in 'noscript' omdat deze anders nauwelijks aan te passen is wanneer betere notificaties mogelijk zijn.  
 
 ### Laag 2 CSS
-CSS is alleen gebruikt voor styling en heeft geen functionele toevoeging aan de applicatie. Elemementen die niet ondersteund worden door browsers zijn verborgen door CSS, bijvoorbeeld een aanmeldknop voor push nofiticaties. Twee functies zijn toegepast in future detection, namelijk [Display Flex](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) en [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout). Zij worden enabled met de [@Supports Tag](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports).
+CSS is alleen gebruikt voor styling en heeft geen functionele toevoeging aan de applicatie. Elementen die niet ondersteund worden door browsers zijn verborgen door CSS, bijvoorbeeld een aanmeldknop voor push nofiticaties. Twee functies zijn toegepast in future detection, namelijk [Display Flex](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) en [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout). Zij worden enabled met de [@Supports Tag](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports).
 
 
 ```css
@@ -72,7 +72,7 @@ CSS is alleen gebruikt voor styling en heeft geen functionele toevoeging aan de 
 De derde laag detect onderstaande features die zijn getest op IE 10 op Windows 7 en oude browsers in het device lab.
 * [XMLHttpRequest](https://developer.mozilla.org/nl/docs/Web/API/XMLHttpRequest)
 * [ClassList](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList)
-* [querySelector](https://developer.mozilla.org/nl/docs/Web/API/Document/querySelector)
+* [QuerySelector](https://developer.mozilla.org/nl/docs/Web/API/Document/querySelector)
 * [DOMParser](https://developer.mozilla.org/en-US/docs/Web/API/DOMParser)
 
 #### Browser support
@@ -111,7 +111,7 @@ if(!!(mp3Test.canPlayType && mp3Test.canPlayType('audio/mpeg;').replace(/no/, ''
 | --------- | --------- | --------- | --------- | --------- |
 | Edge| last 10 versions| last 10 versions| last 5 versions| last 10 versions
 
-Opmerkelijk is dat deze manier van notificaties niet werkt op IE en op mobiele browsers. De notificatie wordt getoond als na een XMLHttpRequest een verandering in score is.
+Opmerkelijk is dat deze manier van notificaties niet werkt op mobiele browsers. De notificatie wordt getoond als na een XMLHttpRequest een verandering in score is.
 
 ### Laag 5 JavaScript, Push Api
 De vijfde laag detect de volgende features:
@@ -162,7 +162,7 @@ Thirdly, generate keys
 node_modules/web-push/src/cli.js generate-vapid-keys
 
 ```
-Fourth, make a .env
+Fourthly, make a .env
 ```
 VAPID_SUBJECT= // Example mailto:casburggraaf@gmail.com
 VAPID_PUBLIC_KEY // Your pub key
