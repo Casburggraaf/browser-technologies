@@ -68,7 +68,7 @@ bijvoorbeeld
 ```
 Twee functies die ik gebruik die worden uitgevoerd doormiddel van feuture dedection zijn [Display Flex](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) en [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) en worden enabled doormiddel van de [@Supports Tag](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports)
 
-### Laag 4 Push Api
+### Laag 3 Javascript, XML HttpRequest
  JavaScript, XML HttpRequest
 De derde laag detect de volgende feutures
 * [XMLHttpRequest](https://developer.mozilla.org/nl/docs/Web/API/XMLHttpRequest)
@@ -108,6 +108,7 @@ if(window.Notification){
 
 En Mp3 support:
 ```javascript
+var mp3Test = document.createElement('audio');
 if(!!(mp3Test.canPlayType && mp3Test.canPlayType('audio/mpeg;').replace(/no/, ''))){
 ```
 #### Browsers support
@@ -119,6 +120,62 @@ if(!!(mp3Test.canPlayType && mp3Test.canPlayType('audio/mpeg;').replace(/no/, ''
 Deze manier van notifacties werkt niet op IE en op mobiele Browsers
 De Notifactie word getoond als na een XMLHttpRequest een verandering in score is.
 
-### Laag 4 Push Api
+### Laag 5 JavaScript, Push Api
 De vierde laag detect de volgende feuture
 * [Push Api](https://developer.mozilla.org/en-US/docs/Web/API/Push_API)
+* [Service Worker](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker)
+
+Doormiddel van:<br>
+Push Notifications:
+```javascript
+  if (!('PushManager' in window)) {
+```
+Notificaties:
+```javascript
+  Notification.requestPermission().then(function (status) {
+```
+Service worker:
+```javascript
+  if ('serviceWorker' in navigator) {
+```
+
+
+#### Browsers support
+
+| [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/firefox.png" alt="Firefox" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/chrome.png" alt="Chrome" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/opera.png" alt="Opera" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Opera | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/chrome-android.png" alt="Chrome for Android" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome for Android |
+| --------- | --------- | --------- | --------- |
+| last 10 versions| last 10 versions| last 8 versions| last version
+
+Voor het afhandelen van de notificaties wordt gebruikt gemaakt van:
+* [Node Express](https://expressjs.com/)
+* [Web Push](https://github.com/web-push-libs/web-push)
+* [Web Push blog](https://thihara.github.io/Web-Push/)
+
+
+## Build an try for your self
+First, clone repository
+```
+Git clone https://github.com/Casburggraaf/browser-technologies/tree/master/```
+Second install packages
+```
+npm install
+```
+Third generate keys
+```
+node_modules/web-push/src/cli.js generate-vapid-keys
+
+```
+Fourth make a .env
+```
+VAPID_SUBJECT= // Example mailto:casburggraaf@gmail.com
+VAPID_PUBLIC_KEY // Your pub key
+VAPID_PRIVATE_KEY= // Your private key
+AUTH_SECRET= // A sectert for auth
+HOST= // Host of server
+JSON= // Name for json file to store subscriptions
+```
+
+Final run application
+```
+npm start
+```
