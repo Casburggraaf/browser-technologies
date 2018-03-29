@@ -18,7 +18,7 @@ self.addEventListener('push', function(event) {
       self.registration.showNotification(title, {
           body: message,
           tag: 'push-demo',
-          renotify: true
+          renotify: true,
           icon: icon
           // badge: icon,
           // sound: sound
