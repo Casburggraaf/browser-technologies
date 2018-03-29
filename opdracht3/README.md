@@ -155,11 +155,14 @@ Voor het afhandelen van de notificaties wordt gebruikt gemaakt van:
 ## Build an try for your self
 First, clone repository
 ```
-Git clone https://github.com/Casburggraaf/browser-technologies/tree/master/```
+Git clone https://github.com/Casburggraaf/browser-technologies/tree/master/
+```
+
 Second install packages
 ```
 npm install
 ```
+
 Third generate keys
 ```
 node_modules/web-push/src/cli.js generate-vapid-keys
