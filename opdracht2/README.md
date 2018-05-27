@@ -1,7 +1,9 @@
 
 # Browser Technologies
-//Robuuste, toegankelijke websites leren bouwen …
-
+Robuuste, toegankelijke websites leren bouwen …
+<details>
+<summary>Assignments</summary>
+<p>
 ## Opdracht 2 - 1, 2, 3 Feature Detectie
 //Wat laat je zien als een browser of gebruiker 'enhancement' niet kan tonen of zien? Hoe doe je Feature Detection en wat doe je als een techniek niet werkt?
 
@@ -18,24 +20,188 @@ Beoordelingscriteria
   - Bronnen van uitleg en gebruikte artikelen.
   -	Welke browsers/devices ondersteunen deze wel/niet.
   -	Een beschrijving hoe de fallback werkt.
+</p>
+</details>
 
 
 ## Harmonica
 [Live Demo](https://casburggraaf.github.io/browser-technologies/opdracht2/harmonica/)
-Content is visible on all devices
+![screen shot 2018-05-27 at 17 50 44](https://user-images.githubusercontent.com/373753/40587936-846beeae-61d6-11e8-991d-78b53c9a7a30.png)
+Content is visible on all browsers without js/css.
 Harmonica effect is tested on
 - Min ie9
-- All Chrome
-- Mobile devices(touch)
+- Chrome new, and on Windows XP
+- Mobile devices(touch), IPhone X and all devices in the device lab
 - Keyboard and screenreader support
 
-Ie8 is only possible with id's on detail element or a function that everything is folded en unfolded on click
+<img width="1384" alt="screen shot 2018-05-27 at 18 14 32" src="https://user-images.githubusercontent.com/373753/40588178-d5082596-61d9-11e8-9f64-8f51a6d4ecb8.png">
+This shows the current native details support
+
+Ie8 is in theory possible but not without changing the HTHML(giving the elements id's because "this" is not supported). I didn't do this in the Live demo because in my opinion it's you responsibility as developer that the core of your application is usable. And in IE 8 you can see the content so the application is "useable".
+
+### Feature Detection
+
+### Support for < details >
+```Javascript
+//detects support for details
+var detailCompitelity = 'open' in document.createElement('details');
+if (!detailCompitelity) {
+  var summarys = document.getElementsByTagName("summary");
+  var details = document.getElementsByTagName("details");
+  // More Code ....
+}
+```
+This is checking if the browser knows the elements "details" and has the property "open" If not it's useing a "simple" script that is simulating native details supports
+<details>
+<summary>Own written details support</summary>
+<p>
+```Javascript
+//detect none support for details
+var detailCompitelity = 'open' in document.createElement('details');
+if (!detailCompitelity) {
+  var summarys = document.getElementsByTagName("summary");
+  var details = document.getElementsByTagName("details");
+
+  for(var i = 0; i < details.length; i++) {
+    var tempChilderen = details[i].getElementsByTagName("*");
+    for(var j = 0; j < tempChilderen.length; j++){
+      if (tempChilderen[j].tagName !== "SUMMARY") {
+        if (tempChilderen[j].classList){
+          tempChilderen[j].classList.add("hideDetails")
+        } else {
+          tempChilderen[j].setAttribute('class', tempChilderen[j].getAttribute('class') + ' ' + "hideDetails");
+        }
+      }
+    }
+  }
+
+  for(var i = 0; i < summarys.length; i++){
+    if (document.addEventListener) {
+      summarys[i].addEventListener("click", clickSummery, false);
+    }
+    else {
+      summarys[i].attachEvent("onclick", clickSummery);
+    }
+  }
+}
+
+function clickSummery() {
+  var tempdetails = this.parentNode.getElementsByTagName("*");
+  for(var i = 0; i < tempdetails.length; i++){
+    if (tempdetails[i].tagName !== "SUMMARY") {
+      if (tempdetails[i].classList){
+        if (tempdetails[i].classList == "hideDetails") {
+          tempdetails[i].classList.remove("hideDetails");
+        } else {
+          tempdetails[i].classList.add("hideDetails");
+        }
+      } else {
+        if (tempdetails[i].getAttribute('class').indexOf("hideDetails") > -1) {
+          tempdetails[i].setAttribute('class', tempdetails[i].getAttribute('class').replace("hideDetails", ' '));
+        } else {
+          tempdetails[i].setAttribute('class', tempdetails[i].getAttribute('class') + ' ' + "hideDetails");
+        }
+      }
+    }
+  }
+}
+```
+</p>
+</details>
+
+### Support for display: flex;
+A simple check if display flex is supported. If not the page will look diffent but it will still be useable
+```css
+@supports (display: flex) {
+  body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+```
+
+### Support for unkown html tags
+In very old browser there is a bug when a tag is used isn't supported it closses it self.
+Example
+```html
+<details>
+  <summary>Koop</summary>
+  <p>Maecenas et sem eu lectus condimentum interdum.</p>
+  <p>Maecenas vel risus sit amet dui sollicitudin feugiat sed et metus.</p>
+</details>
+```
+is parsed like this
+```html
+<details></details>
+  <summary></summary>Koop
+  <p>Maecenas et sem eu lectus condimentum interdum.</p>
+  <p>Maecenas vel risus sit amet dui sollicitudin feugiat sed et metus.</p>
+```
+ This is a problem for styling and for pollyfilling new browser features.
+ But there is a simple fix(hack) for this:
+ ```Javascript
+ <script>
+   document.createElement("details");
+   document.createElement("summary");
+ </script>
+ ```
+ If you put this simple tag before your body the browser will parse these tags. It won't function like modern browsers but you can enchant or pollyfill them.
 
 ## File upload
 [Live Demo](https://casburggraaf.github.io/browser-technologies/opdracht2/file-upload/)
-Function is available on every device that supports file type input.
-Preview is available on every device that supports the [FileReader API](https://caniuse.com/#feat=filereader)
+![screen shot 2018-05-27 at 18 16 38](https://user-images.githubusercontent.com/373753/40588207-2040f808-61da-11e8-8aef-749567cea03e.png)
 
-Fallbacks that can be used are:
-- A preview for the image that is rendered by the backend after the submit button is used
--  A fallback is input file is not supported to enable to send the picture by href:mailto.
+The core function(file upload) is available on every device that supports file type input. And that is on "almost" every browser..
+<img width="1091" alt="screen shot 2018-05-27 at 18 18 53" src="https://user-images.githubusercontent.com/373753/40588223-73842fe4-61da-11e8-910b-26608a5f7025.png">
+
+Preview is available on every device that supports the [FileReader API](https://caniuse.com/#feat=filereader)
+<img width="1371" alt="screen shot 2018-05-27 at 18 20 47" src="https://user-images.githubusercontent.com/373753/40588237-b47f6658-61da-11e8-9dbb-ae8659e04aac.png">
+
+### Feature Detection
+
+### Support for fileReader
+This is checked by
+```javascript
+if (window.FileReader) {
+  document.getElementsByTagName("BODY")[0].setAttribute('class', "enriched");
+  // More
+}
+```
+
+If "fileReader" is supported it will un-hide a empty img in css where the image can be shown.
+
+After that it will watch for changes in the input tag.
+```JavaScript
+if (document.addEventListener) {
+  input.addEventListener("change", fileChange, false);
+}
+
+function fileChange() {
+  var fileReader = new FileReader();
+  var inputPhoto = input.files[0];
+
+  if (inputPhoto) {
+    fileReader.readAsDataURL(inputPhoto);
+  }
+
+  fileReader.onload = function () {
+    document.getElementsByTagName("IMG")[0].setAttribute("src", fileReader.result);
+  }
+}
+```
+This will change the src of the the loacllpath of the image before upload.
+
+### Support for display: flex;
+A simple check if display flex is supported. If not the page will look diffent but it will still be useable
+```css
+@supports (display: flex) {
+  body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+```
+### Support input type file
+If input type file isn't supported a href link with a mailto: prefix can be used. This will enable the user to send an with the picture. If you want to automate this process a big backend application needs to be build...
