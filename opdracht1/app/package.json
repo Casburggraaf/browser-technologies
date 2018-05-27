@@ -1,0 +1,26 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.23.6",
+    "gulp": "^3.9.1"
+  },
+  "xo": {
+    "space": "tab",
+    "space-before-function-paren": [
+      "error",
+      "never"
+    ],
+    "quotmark": "double"
+  },
+  "dependencies": {
+    "xo": "^0.20.1"
+  }
+}

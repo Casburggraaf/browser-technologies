@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Movies</title>
+  <link rel="stylesheet" href="static/style/style.css">
+</head>
+
+<body>
+  <img src="static/style/loader.svg" alt="loaderGif">
+  <section class="active" id="start">
+    <h1>Movies</h1>
+    <img data-bind="home_img" src="" alt="">
+    <p>See the most pupulair movies of this time and see details about them!</p>
+  </section>
+  <section id="popular">
+    <h1>Popular Movies</h1>
+    <input type="checkbox" id="ratingCeckbox"><label for="ratingCeckbox">Don't show movies with a rating greater than 6.5</label>
+    <ul id="popularMovies">
+      <li><a data-bind="title"></a></li>
+    </ul>
+  </section>
+  <section id="movieDetail">
+    <h1>Movie Detail</h1>
+    <section id="movieDetails">
+      <img data-bind="backdrop_path">
+      <h3><a data-bind="title" target="_blank"></a></h3>
+      <img data-bind="poster_path">
+      <h4>Overview</h4>
+      <p data-bind="overview"></p>
+      <h4>Genres</h4>
+      <ul data-bind="genres">
+        <li data-bind="name"></li>
+      </ul>
+    </section>
+  </section>
+  <section id="page404">
+    <h1>Page not found</h1>
+    <h3>Go back and try again</h3>
+  </section>
+  <section id="error">
+    <h1>An error occurred</h1>
+    <h3>Please try again</h3>
+    <p></p>
+  </section>
+  <nav>
+    <li><a href="#start">Start</a></li>
+    <li><a href="#popular">Popular Movies</a></li>
+    <li id="backButton"><a href="#popular">Back</a></li>
+  </nav>
+  <script src="static/js/modules/extern/routie.js"></script>
+  <script src="static/js/modules/extern/transparency.min.js"></script>
+  <script type="module" src="static/js/app.js"></script>
+</body>
+
+</html>
