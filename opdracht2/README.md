@@ -54,9 +54,7 @@ if (!detailCompitelity) {
 This is checking if the browser knows the elements "details" and has the property "open" If not it's useing a "simple" script that is simulating native details supports
 <details>
 <summary>Own written details support</summary>
-<p>
 ![unknown](https://user-images.githubusercontent.com/373753/40588459-b7b5786e-61dd-11e8-834f-cf956dba0671.png)
-</p>
 </details>
 
 ### Support for display: flex;
