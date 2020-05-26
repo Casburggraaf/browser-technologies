@@ -48,7 +48,9 @@ When there isn't a css file loaded, the purpose of the application will not be c
 <details>
 <summary>Screen Shot</summary>
 <p>
+  
 ![casburggraaf github io_wafs_app_](https://user-images.githubusercontent.com/373753/40172630-7f3f6eec-59cf-11e8-9ec4-3af6fd28a4ee.png)
+
 </p>
 </details>
 
