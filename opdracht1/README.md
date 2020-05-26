@@ -63,7 +63,9 @@ The application works without images, but defeats the purpose of the site. The l
 <details>
 <summary>Screen Shot</summary>
 <p>
+  
 ![casburggraaf github io_wafs_app_ 1](https://user-images.githubusercontent.com/373753/40175782-8e839252-59d9-11e8-96c4-80b5c8cb29d8.png)
+
 </p>
 </details>
 
@@ -76,7 +78,9 @@ Without javascript the application is completely broken (no shit... for a single
 <details>
 <summary>Screen Shot</summary>
 <p>
+  
 ![casburggraaf github io_wafs_app_ 2](https://user-images.githubusercontent.com/373753/40176824-f715d8e0-59dc-11e8-9581-2d60dec9781d.png)
+
 </p>
 </details>
 
@@ -97,7 +101,9 @@ Solution:
 <details>
 <summary>Screen Shot</summary>
 <p>
+  
 ![screenshot](https://user-images.githubusercontent.com/373753/40586736-9438f5ee-61c6-11e8-8ff8-9f52a045f624.png)
+
 </p>
 </details>
 
